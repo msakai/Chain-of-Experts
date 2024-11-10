@@ -1,5 +1,5 @@
 from langchain import PromptTemplate, OpenAI, LLMChain
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import AzureChatOpenAI
 
 
 class BaseExpert(object):
@@ -9,7 +9,7 @@ class BaseExpert(object):
         self.description = description
         self.model = model
 
-        self.llm = ChatOpenAI(
+        self.llm = AzureChatOpenAI(
             model_name=model,
             temperature=0
         )
