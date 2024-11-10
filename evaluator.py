@@ -3,6 +3,7 @@ import importlib
 import traceback
 import inspect
 
+import utils
 from experts.base_expert import BaseExpert
 
 
@@ -63,7 +64,7 @@ Output:
             code_example=problem['code_example'],
         )
         answer = answer.strip("'").strip('')
-        answer = json.loads(answer)
+        answer = utils.extract_json_from_string(answer)
         return answer
     
     def evaluate(self, samples):

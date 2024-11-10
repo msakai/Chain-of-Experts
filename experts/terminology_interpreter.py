@@ -1,4 +1,5 @@
 import json
+import utils
 from experts.base_expert import BaseExpert
 
 from langchain import PromptTemplate, OpenAI, LLMChain
@@ -79,7 +80,7 @@ The output format is a JSON structure followed by refined code:
             knowledge='None',
             comments_text=comments_text
         )
-        output = json.loads(output)
+        output = utils.extract_json_from_string(output)
         answer = ''
         for item in output:
             answer += item['terminology'] + ':' + item['interpretation'] + '\n'

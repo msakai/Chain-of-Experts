@@ -20,6 +20,18 @@ def extract_code_from_string(input_string):
     return '\n'.join(code_blocks)
 
 
+def extract_json_from_string(input_string):
+    try:
+        return json.loads(input_string)
+    except json.decoder.JSONDecodeError as e:
+        pattern = r'```json\s*(.*?)\s*```'
+        json_blocks = re.findall(pattern, input_string, re.DOTALL)
+        if len(json_blocks) > 0:
+            return json.loads(json_blocks[0])
+        else:
+            raise e
+
+
 def read_problem(dataset, problem_name):
     base_dir = 'dataset'
     with open(os.path.join(base_dir, dataset, problem_name, 'description.txt'), 'r', encoding='utf8') as f:
