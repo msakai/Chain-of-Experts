@@ -1,7 +1,6 @@
 from experts.base_expert import BaseExpert
 
 from langchain import PromptTemplate, LLMChain
-from langchain.chat_models import ChatOpenAI
 
 
 class ModelingExpert(BaseExpert):

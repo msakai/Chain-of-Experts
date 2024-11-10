@@ -1,7 +1,6 @@
 import random
 
 from langchain import PromptTemplate, OpenAI, LLMChain
-from langchain.chat_models import ChatOpenAI
 
 from experts.base_expert import BaseExpert
 
