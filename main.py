@@ -16,7 +16,7 @@ from experts import (
     TerminologyInterpreter,
 )
 from comment_pool import CommentPool
-from utils import extract_code_from_string
+from utils import extract_code_from_string, extract_json_from_string
 
 
 def chain_of_experts(problem, 
@@ -75,7 +75,7 @@ def chain_of_experts(problem,
                     previous_expert = expert_stack.pop()
                     previous_comment = comment_pool.pop_comment()
                     result = previous_expert.backward(feedback_pool)
-                    result = json.loads(result)
+                    result = extract_json_from_string(result)
                     if result['is_caused_by_you']:
                         previous_comment.comment_text = result['refined_result']
                         expert_stack.append(previous_expert)
