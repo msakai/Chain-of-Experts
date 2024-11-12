@@ -24,6 +24,8 @@ def extract_json_from_string(input_string):
     try:
         return json.loads(input_string)
     except json.decoder.JSONDecodeError as e:
+        if m := re.fullmatch(r'\s*```json\n(.*)```\s*', input_string, re.DOTALL):
+            return json.loads(m.group(1))
         pattern = r'```json\s*(.*?)\s*```'
         json_blocks = re.findall(pattern, input_string, re.DOTALL)
         if len(json_blocks) > 0:
